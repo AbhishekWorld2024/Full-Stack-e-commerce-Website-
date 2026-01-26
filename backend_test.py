@@ -371,7 +371,7 @@ def main():
         ("Seed Database", tester.test_seed_database),
         ("Admin Login", tester.test_admin_login),
         ("User Registration", tester.test_user_registration),
-        ("Get Products", tester.test_products),
+        ("Get Products", tester.test_get_products),
         ("Get Categories", tester.test_get_product_categories),
         ("Get Single Product", tester.test_get_single_product),
         ("Get Featured Products", tester.test_get_featured_products),
