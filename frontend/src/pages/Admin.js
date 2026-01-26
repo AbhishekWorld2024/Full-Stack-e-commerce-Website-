@@ -18,7 +18,7 @@ const CATEGORIES = ['Shirts', 'T-Shirts', 'Polos', 'Outerwear', 'Trousers', 'Kni
 
 export default function Admin() {
   const navigate = useNavigate();
-  const { user, token, isAdmin } = useAuth();
+  const { user, token, isAdmin, loading: authLoading } = useAuth();
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -39,13 +39,16 @@ export default function Admin() {
   });
 
   useEffect(() => {
+    // Wait for auth to finish loading
+    if (authLoading) return;
+    
     if (!user || !isAdmin) {
       navigate('/login');
       return;
     }
 
     fetchData();
-  }, [user, isAdmin, navigate]);
+  }, [user, isAdmin, authLoading, navigate]);
 
   const fetchData = async () => {
     try {
@@ -170,6 +173,17 @@ export default function Admin() {
     }
   };
 
+  if (authLoading || (!user && !isAdmin)) {
+    return (
+      <div className="min-h-screen px-6 md:px-12 lg:px-24 py-12">
+        <div className="animate-pulse space-y-8">
+          <div className="h-10 bg-[#E5E5E5] w-1/4" />
+          <div className="h-64 bg-[#E5E5E5]" />
+        </div>
+      </div>
+    );
+  }
+  
   if (!user || !isAdmin) return null;
 
   if (loading) {
