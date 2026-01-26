@@ -1,0 +1,156 @@
+{
+  "brand_identity": {
+    "name": "ATELIER",
+    "mission": "Curated minimalism for the modern individual.",
+    "tone": "Editorial, Timeless, Confident, Calm",
+    "archetype": "The Creator / The Sage"
+  },
+  "typography": {
+    "font_family": {
+      "heading": "Playfair Display, serif",
+      "body": "Manrope, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "scale": {
+      "h1": "text-5xl md:text-7xl font-medium tracking-tight leading-[1.1]",
+      "h2": "text-4xl md:text-5xl font-normal tracking-tight",
+      "h3": "text-2xl md:text-3xl font-normal",
+      "body_lg": "text-lg md:text-xl leading-relaxed font-light",
+      "body_base": "text-base leading-relaxed text-muted-foreground",
+      "caption": "text-xs uppercase tracking-[0.2em] font-semibold text-muted-foreground"
+    },
+    "imports": [
+      "@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');"
+    ]
+  },
+  "colors": {
+    "palette": {
+      "background": "#F9F9F9",
+      "foreground": "#1A1A1A",
+      "primary": "#1A1A1A",
+      "primary_foreground": "#FFFFFF",
+      "secondary": "#E5E5E5",
+      "secondary_foreground": "#1A1A1A",
+      "accent": "#D4C5B0",
+      "accent_foreground": "#1A1A1A",
+      "muted": "#F0F0F0",
+      "muted_foreground": "#666666",
+      "border": "#E5E5E5",
+      "input": "#E5E5E5",
+      "ring": "#1A1A1A"
+    },
+    "usage": {
+      "body_bg": "bg-[#F9F9F9]",
+      "card_bg": "bg-white",
+      "text_primary": "text-[#1A1A1A]",
+      "text_secondary": "text-[#666666]",
+      "border_subtle": "border-[#E5E5E5]"
+    }
+  },
+  "layout": {
+    "spacing": {
+      "container_padding": "px-6 md:px-12 lg:px-24",
+      "section_gap": "py-24 md:py-32",
+      "element_gap": "gap-6 md:gap-12"
+    },
+    "grid_system": {
+      "product_grid": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16",
+      "editorial_grid": "grid grid-cols-12 gap-4"
+    },
+    "border_radius": {
+      "default": "rounded-none",
+      "button": "rounded-none",
+      "card": "rounded-none",
+      "input": "rounded-none"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#1A1A1A] text-white hover:bg-[#333333] h-12 px-8 rounded-none uppercase tracking-widest text-xs font-semibold transition-all duration-300",
+      "secondary": "bg-transparent border border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white h-12 px-8 rounded-none uppercase tracking-widest text-xs font-semibold transition-all duration-300",
+      "ghost": "bg-transparent text-[#1A1A1A] hover:bg-[#F0F0F0] h-10 px-4 rounded-none uppercase tracking-widest text-xs font-semibold"
+    },
+    "cards": {
+      "product": {
+        "wrapper": "group cursor-pointer",
+        "image_container": "relative aspect-[3/4] overflow-hidden bg-[#F0F0F0] mb-4",
+        "image": "object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105",
+        "info": "flex flex-col gap-1",
+        "title": "font-serif text-lg text-[#1A1A1A]",
+        "price": "font-sans text-sm text-[#666666]"
+      }
+    },
+    "inputs": {
+      "default": "h-12 bg-transparent border-b border-[#E5E5E5] focus:border-[#1A1A1A] rounded-none px-0 placeholder:text-[#999999] focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors"
+    }
+  },
+  "visual_enhancers": {
+    "shadows": {
+      "soft": "shadow-[0_4px_20px_rgba(0,0,0,0.03)]",
+      "hover": "shadow-[0_10px_40px_rgba(0,0,0,0.06)]"
+    },
+    "textures": {
+      "noise": "bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"
+    },
+    "animations": {
+      "fade_in": "animate-in fade-in duration-700",
+      "slide_up": "animate-in slide-in-from-bottom-8 fade-in duration-700"
+    }
+  },
+  "image_urls": {
+    "hero": {
+      "main": "https://images.unsplash.com/photo-1765306552441-cd32bb216b0c?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "alt": "Editorial fashion portrait"
+    },
+    "categories": {
+      "men": "https://images.unsplash.com/photo-1764069415220-909767290088?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "women": "https://images.unsplash.com/photo-1761891873744-eb181eb1334a?crop=entropy&cs=srgb&fm=jpg&q=85"
+    },
+    "products": [
+      {
+        "url": "https://images.unsplash.com/photo-1620799139652-715e4d5b232d?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "name": "Classic White Shirt"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1564316800929-be17a69d6966?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "name": "Essential Tee"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1587375027707-6aeb5230fe3b?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "name": "Navy Polo"
+      },
+      {
+        "url": "https://images.pexels.com/photos/3400764/pexels-photo-3400764.jpeg",
+        "name": "Structured Coat"
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Use 'Playfair Display' for all Headings (h1-h3) to give an editorial look.",
+    "Use 'Manrope' for all body text and UI elements.",
+    "Implement a 'Sharp' aesthetic: 0px border-radius on buttons, inputs, and cards.",
+    "Use generous whitespace. Padding should be 2x normal (e.g., py-24 instead of py-12).",
+    "Product cards should be minimal: Image + Title + Price. No 'Add to Cart' button visible until hover (or keep it clean and just link to detail).",
+    "Navigation: Sticky, minimal. Logo centered or left. Links: Shop, Collections, About. Right: Search, Account, Cart (Text 'Cart (0)').",
+    "Footer: Large, 4-column. Big typography for the newsletter signup.",
+    "Use the provided image URLs for the respective sections.",
+    "Ensure high contrast for text (Dark Grey on Off-White).",
+    "Do not use gradients. Use solid colors or subtle textures."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy",
+    "Use glass-morphism effects with backdrop filters (12-24px blur) sparingly, only for sticky nav.",
+    "You MUST NOT apply universal transition. Eg: transition: all. This results in breaking transforms.",
+    "You MUST NOT center align the app container.",
+    "Always use modern button styles (Sharp Rectangles for this brand).",
+    "NEVER: use AI assistant Emoji characters.",
+    "Every interaction needs micro-animations.",
+    "Use 2-3x more spacing than feels comfortable.",
+    "Prioritize using pre-existing components from src/components/ui when applicable.",
+    "Components MUST use named exports.",
+    "Pages MUST use default exports.",
+    "Use 'sonner' for toasts."
+  ]
+}
