@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
-import { Package, ChevronRight } from 'lucide-react';
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -14,7 +13,6 @@ export default function Orders() {
   useEffect(() => {
     const fetchOrders = async () => {
       if (!token) return;
-      
       try {
         const response = await axios.get(`${API}/orders`, {
           headers: { Authorization: `Bearer ${token}` }
@@ -26,144 +24,78 @@ export default function Orders() {
         setLoading(false);
       }
     };
-
     fetchOrders();
   }, [token]);
 
   const getStatusColor = (status) => {
-    switch (status) {
-      case 'confirmed': return 'bg-blue-100 text-blue-700';
-      case 'processing': return 'bg-yellow-100 text-yellow-700';
-      case 'shipped': return 'bg-purple-100 text-purple-700';
-      case 'delivered': return 'bg-green-100 text-green-700';
-      case 'cancelled': return 'bg-red-100 text-red-700';
-      default: return 'bg-gray-100 text-gray-700';
-    }
-  };
-
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
+    const colors = {
+      confirmed: 'bg-blue-100 text-blue-800',
+      processing: 'bg-yellow-100 text-yellow-800',
+      shipped: 'bg-purple-100 text-purple-800',
+      delivered: 'bg-green-100 text-green-800',
+      cancelled: 'bg-red-100 text-red-800'
+    };
+    return colors[status] || 'bg-gray-100 text-gray-800';
   };
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-6">
-        <div className="text-center max-w-md">
-          <Package className="h-16 w-16 text-[#E5E5E5] mx-auto mb-6" />
-          <h1 className="font-serif text-3xl text-[#1A1A1A] mb-4">My Orders</h1>
-          <p className="text-[#666666] mb-8">Please login to view your orders.</p>
-          <Link
-            to="/login"
-            className="inline-block bg-[#1A1A1A] text-white hover:bg-[#333333] h-12 px-8 uppercase tracking-widest text-xs font-semibold flex items-center justify-center"
-          >
-            Login
-          </Link>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">My Orders</h1>
+          <p className="text-gray-600 mb-4">Please login to view orders.</p>
+          <Link to="/login" className="text-blue-600 hover:underline">Login</Link>
         </div>
       </div>
     );
   }
 
-  if (loading) {
-    return (
-      <div className="min-h-screen px-6 md:px-12 lg:px-24 py-12">
-        <div className="animate-pulse space-y-8">
-          <div className="h-10 bg-[#E5E5E5] w-1/4" />
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="h-32 bg-[#E5E5E5]" />
-          ))}
-        </div>
-      </div>
-    );
-  }
+  if (loading) return <div className="text-center py-12">Loading...</div>;
 
   return (
     <div className="min-h-screen" data-testid="orders-page">
-      {/* Header */}
-      <div className="px-6 md:px-12 lg:px-24 py-16 border-b border-[#E5E5E5]">
-        <h1 className="font-serif text-4xl md:text-5xl font-normal tracking-tight text-[#1A1A1A]">
-          My Orders
-        </h1>
-        <p className="text-[#666666] mt-4">
-          {orders.length} {orders.length === 1 ? 'order' : 'orders'}
-        </p>
-      </div>
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <h1 className="text-2xl font-bold text-gray-800 mb-6">My Orders</h1>
 
-      <div className="px-6 md:px-12 lg:px-24 py-12">
         {orders.length === 0 ? (
-          <div className="text-center py-24">
-            <Package className="h-16 w-16 text-[#E5E5E5] mx-auto mb-6" />
-            <h2 className="font-serif text-2xl text-[#1A1A1A] mb-4">No orders yet</h2>
-            <p className="text-[#666666] mb-8">Start shopping to see your orders here.</p>
-            <Link
-              to="/shop"
-              className="inline-block bg-[#1A1A1A] text-white hover:bg-[#333333] h-12 px-8 uppercase tracking-widest text-xs font-semibold"
-              data-testid="start-shopping-btn"
-            >
+          <div className="text-center py-12">
+            <p className="text-gray-600 mb-4">No orders yet.</p>
+            <Link to="/shop" className="text-blue-600 hover:underline" data-testid="start-shopping-btn">
               Start Shopping
             </Link>
           </div>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-4">
             {orders.map((order) => (
-              <div
-                key={order.id}
-                className="border border-[#E5E5E5] bg-white p-6 md:p-8 animate-fade-in"
-                data-testid={`order-${order.id}`}
-              >
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+              <div key={order.id} className="border rounded p-4" data-testid={`order-${order.id}`}>
+                <div className="flex justify-between items-start mb-4">
                   <div>
-                    <p className="text-xs text-[#666666] uppercase tracking-wider">
-                      Order #{order.id.slice(0, 8)}
-                    </p>
-                    <p className="text-sm text-[#999999] mt-1">
-                      Placed on {formatDate(order.created_at)}
+                    <p className="font-semibold">Order #{order.id.slice(0, 8)}</p>
+                    <p className="text-sm text-gray-500">
+                      {new Date(order.created_at).toLocaleDateString()}
                     </p>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <span className={`px-3 py-1 text-xs uppercase tracking-wider font-medium ${getStatusColor(order.status)}`}>
+                  <div className="text-right">
+                    <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(order.status)}`}>
                       {order.status}
                     </span>
-                    <span className="text-lg font-medium text-[#1A1A1A]">
-                      ${order.total.toFixed(2)}
-                    </span>
+                    <p className="font-semibold mt-1">${order.total.toFixed(2)}</p>
                   </div>
                 </div>
-
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                  {order.items.slice(0, 4).map((item, index) => (
-                    <div key={index} className="aspect-[3/4] bg-[#F0F0F0] overflow-hidden">
-                      <img
-                        src={item.product_image}
-                        alt={item.product_name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                <div className="flex flex-wrap gap-2">
+                  {order.items.slice(0, 4).map((item, idx) => (
+                    <img
+                      key={idx}
+                      src={item.product_image}
+                      alt={item.product_name}
+                      className="w-12 h-16 object-cover rounded"
+                    />
                   ))}
                   {order.items.length > 4 && (
-                    <div className="aspect-[3/4] bg-[#F0F0F0] flex items-center justify-center">
-                      <span className="text-[#666666] text-sm">
-                        +{order.items.length - 4} more
-                      </span>
-                    </div>
+                    <span className="text-sm text-gray-500 self-center">
+                      +{order.items.length - 4} more
+                    </span>
                   )}
-                </div>
-
-                <div className="mt-6 pt-6 border-t border-[#E5E5E5] flex justify-between items-center">
-                  <div className="text-sm text-[#666666]">
-                    <span className="font-medium text-[#1A1A1A]">Ships to:</span>{' '}
-                    {order.shipping_address.city}, {order.shipping_address.country}
-                  </div>
-                  <Link
-                    to={`/orders/${order.id}`}
-                    className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-semibold text-[#666666] hover:text-[#1A1A1A] transition-colors"
-                  >
-                    View Details
-                    <ChevronRight className="h-4 w-4" />
-                  </Link>
                 </div>
               </div>
             ))}
